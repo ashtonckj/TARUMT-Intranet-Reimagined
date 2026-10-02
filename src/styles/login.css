@@ -1,0 +1,412 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Login, forgot-password and Course Registration login pages (body.login-layout).
+ *
+ * The page puts the logo, the form and the footer links in one Bootstrap column. That
+ * column becomes a single card, so the logo, title, form and links read as one unit
+ * instead of floating separately over the photo.
+ */
+
+:root[data-tib] body.login-layout {
+  min-height: 100vh;
+  background-color: var(--tib-bg) !important;
+  background-position: center !important;
+  background-size: cover !important;
+
+  /* Darken the seasonal photo slightly so the card always stands out from it. */
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgb(8 12 20 / 0.08), rgb(8 12 20 / 0.32));
+  }
+
+  .main-container {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+  }
+
+  .main-content {
+    background: transparent !important; /* layout.css paints it for the inner pages */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 100vh;
+    padding: 40px 16px !important;
+  }
+
+  .main-content > .row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* The card. */
+  .main-content > .row > [class*="col-"] {
+    float: none;
+    width: 100%;
+    max-width: 420px;
+    min-height: 0;
+    margin: 0 !important;
+    padding: 36px 32px 22px;
+    color: var(--tib-text);
+    background: var(--tib-surface-glass);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid color-mix(in srgb, var(--tib-border) 75%, transparent);
+    border-radius: 24px;
+    box-shadow: var(--tib-shadow-lg);
+  }
+
+  /* Logo and site name. */
+  h1[align="center"] {
+    margin: 0 0 24px;
+    font-size: 0;
+    line-height: 1;
+    text-align: center;
+
+    > a {
+      display: inline-block;
+      border-radius: 12px;
+    }
+    img {
+      display: block;
+      width: 200px;
+      height: auto;
+      margin: 0 auto;
+    }
+    br {
+      display: none;
+    }
+  }
+  #id-text2 {
+    display: block;
+    margin-top: 14px;
+    font-size: 22px;
+    font-weight: 650;
+    line-height: 1.25;
+    color: var(--tib-text) !important; /* the page sets a seasonal colour inline */
+  }
+
+  .login-container {
+    width: auto;
+    margin: 0;
+  }
+  .login-container .space,
+  .login-container .space-4,
+  .login-container .space-6 {
+    display: none;
+  }
+
+  /* Strip Ace's box-in-a-box chrome so the form sits directly on the card. */
+  .widget-box,
+  .widget-box .widget-body,
+  .widget-box .widget-main {
+    padding: 0 !important;
+    color: inherit;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  h4.header {
+    margin: 0 0 20px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--tib-text-muted) !important;
+    border: 0;
+
+    > .ace-icon {
+      display: none;
+    }
+  }
+  .forgot-box h4.header {
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-weight: 650;
+    color: var(--tib-text) !important;
+  }
+  .forgot-box p {
+    margin: 0 0 20px;
+    font-size: 13.5px;
+    text-align: center;
+    color: var(--tib-text-muted);
+  }
+
+  /* Fields: taller, rounded, icon on the left on every login page. */
+  label.block {
+    display: block;
+    margin: 0 0 14px;
+  }
+  .input-icon {
+    position: relative;
+    display: block;
+
+    > input {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px 0 42px !important;
+      font-size: 15px;
+      border-radius: var(--tib-radius) !important;
+      background-color: var(--tib-surface) !important;
+    }
+    > .ace-icon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 14px !important;
+      right: auto !important;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      width: 16px;
+      padding: 0;
+      font-size: 15px;
+      line-height: 1;
+      color: var(--tib-text-faint);
+      pointer-events: none;
+      transition: color var(--tib-speed) var(--tib-ease);
+    }
+    > input:focus + .ace-icon {
+      color: var(--tib-accent);
+    }
+  }
+  .input-icon:not(:has(> .ace-icon)) > input {
+    padding-left: 14px !important;
+  }
+
+  .password-wrapper > input {
+    padding-right: 48px !important;
+  }
+  .password-wrapper .toggle-eye {
+    right: 5px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: var(--tib-text-muted);
+    border-radius: var(--tib-radius-sm);
+
+    &:hover {
+      color: var(--tib-text);
+      background-color: var(--tib-surface-3);
+      text-decoration: none;
+    }
+    .ace-icon {
+      font-size: 16px;
+      line-height: inherit;
+    }
+  }
+
+  /* Full-width primary button, accent coloured on every page (Ace used red for "Submit"). */
+  form .clearfix {
+    margin-top: 6px;
+  }
+  form .clearfix .btn {
+    float: none !important;
+    width: 100% !important;
+    height: 46px;
+    font-size: 15px;
+    color: var(--tib-on-accent) !important;
+    background-color: var(--tib-accent-solid) !important;
+    border-color: var(--tib-accent-solid) !important;
+    border-radius: var(--tib-radius) !important;
+    box-shadow: 0 8px 20px -10px var(--tib-accent-solid) !important;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--tib-accent-solid-hover) !important;
+      border-color: var(--tib-accent-solid-hover) !important;
+      filter: none;
+    }
+    .bigger-110 {
+      font-size: inherit;
+    }
+  }
+
+  /* "Quick Links" divider. */
+  .social-or-login {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 12px;
+
+    &::before,
+    &::after {
+      content: "";
+      position: static;
+      flex: 1;
+      border-top: 1px solid var(--tib-border);
+    }
+    > span {
+      padding: 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tib-text-muted);
+      background: none;
+    }
+  }
+
+  /* Course Registration Portal shortcut as a full-width link row. */
+  .social-login {
+    margin: 0;
+
+    a.btn {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      height: auto;
+      padding: 10px 14px;
+      font-size: 0; /* hides the &nbsp; spacers in the markup */
+      line-height: 1.4;
+      color: var(--tib-text) !important;
+      background-color: var(--tib-surface) !important;
+      border: 1px solid var(--tib-border-strong) !important;
+      border-radius: var(--tib-radius) !important;
+
+      &::after {
+        content: "\f105";
+        margin-left: auto;
+        font-family: FontAwesome;
+        font-size: 18px;
+        color: var(--tib-text-faint);
+      }
+      &:hover {
+        background-color: var(--tib-accent-softer) !important;
+        border-color: var(--tib-accent) !important;
+        text-decoration: none;
+      }
+      > img {
+        width: 28px !important;
+        height: 28px;
+        margin: 0;
+        object-fit: contain;
+      }
+      > span {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--tib-text) !important;
+      }
+    }
+  }
+
+  /* "I forgot my password" and "Back to login" as plain links instead of coloured bars. */
+  .toolbar {
+    margin-top: 18px;
+    padding: 0 !important;
+    text-align: center;
+    background: none !important;
+    border: 0 !important;
+
+    > div {
+      display: block;
+      float: none !important;
+      width: auto;
+      padding: 0;
+      text-align: center !important;
+    }
+    a {
+      margin: 0 !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: var(--tib-accent) !important;
+      text-shadow: none !important;
+    }
+    .forgot-password-link > .ace-icon {
+      display: none;
+    }
+  }
+  .toolbar:not(:has(a)) {
+    display: none;
+  }
+
+  /* Footer links, tucked into the bottom of the card. */
+  .main-content > .row > [class*="col-"] > .center {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--tib-border);
+    text-align: center;
+
+    > .small {
+      font-size: 11.5px;
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+      color: var(--tib-text-faint) !important;
+    }
+    a {
+      color: var(--tib-text-muted);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--tib-accent);
+      text-decoration: underline;
+    }
+  }
+
+  /* Messages shown below the card (e.g. after a password reset request). */
+  .main-content > .center {
+    width: 100%;
+    max-width: 420px;
+
+    .alert {
+      margin: 0;
+      text-align: center;
+      background-color: var(--tib-surface-glass);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+    }
+  }
+}
+
+:root[data-tib][data-tib-theme="dark"] body.login-layout {
+  &::before {
+    background: linear-gradient(180deg, rgb(4 6 12 / 0.5), rgb(4 6 12 / 0.72));
+  }
+  /* The logo artwork is dark-on-transparent, so give it a light plate. */
+  h1[align="center"] img {
+    box-sizing: content-box;
+    padding: 6px 12px;
+    background: #ffffff;
+    border-radius: 12px;
+  }
+}
+
+/* "Seasonal login background" switched off in the popup. */
+:root[data-tib][data-tib-login-bg="plain"] body.login-layout {
+  background-image:
+    radial-gradient(60rem 40rem at 10% -10%, color-mix(in srgb, var(--tib-accent) 22%, transparent), transparent 70%),
+    radial-gradient(50rem 36rem at 110% 110%, color-mix(in srgb, var(--tib-accent) 16%, transparent), transparent 70%) !important;
+
+  &::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  :root[data-tib] body.login-layout {
+    .main-content {
+      justify-content: flex-start;
+      padding: 20px 12px !important;
+    }
+    .main-content > .row > [class*="col-"] {
+      padding: 28px 20px 18px;
+      border-radius: 20px;
+    }
+    h1[align="center"] img {
+      width: 170px;
+    }
+  }
+}

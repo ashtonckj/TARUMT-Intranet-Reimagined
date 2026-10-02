@@ -1,0 +1,9 @@
+# Generated previews
+dev/preview/
+
+# Pages saved from the intranet after logging in carry personal details.
+dev/pages/*
+!dev/pages/web-login.html
+!dev/pages/web-forgot.html
+!dev/pages/reg-login.html
+!dev/pages/mock-dashboard.html

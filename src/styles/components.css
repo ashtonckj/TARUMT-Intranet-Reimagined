@@ -1,0 +1,404 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Content blocks inside pages: widget boxes, tables, tabs, panels, profile tables.
+ * The last section catches old inline colours (bgcolor="...", <font color>) that would
+ * otherwise turn into light boxes or invisible text in dark mode.
+ */
+
+:root[data-tib] {
+  /* ---- Widget boxes (Ace's card) ----------------------------------------- */
+
+  .widget-box {
+    margin: 0 0 20px;
+    background-color: var(--tib-surface);
+    border: 1px solid var(--tib-border) !important;
+    border-radius: var(--tib-radius);
+    box-shadow: var(--tib-shadow-sm);
+  }
+  .widget-box.transparent {
+    background: transparent;
+    border: 0 !important;
+    box-shadow: none;
+  }
+  .widget-header {
+    min-height: 44px;
+    padding-left: 16px;
+    color: var(--tib-text);
+    background: var(--tib-surface-2) !important;
+    filter: none;
+    border-bottom: 1px solid var(--tib-border) !important;
+    border-radius: var(--tib-radius) var(--tib-radius) 0 0;
+
+    > .widget-title,
+    h4,
+    h5 {
+      line-height: 44px;
+      font-size: 15px;
+      font-weight: 650;
+      color: inherit !important;
+    }
+  }
+  .widget-box.collapsed > .widget-header {
+    border-bottom: 0 !important;
+    border-radius: var(--tib-radius);
+  }
+  .widget-toolbar {
+    line-height: 44px;
+
+    &::before {
+      display: none;
+    }
+    > a,
+    > a > .ace-icon {
+      color: inherit !important;
+      opacity: 0.8;
+    }
+    > a:hover {
+      opacity: 1;
+    }
+  }
+  .widget-body {
+    color: var(--tib-text);
+    background-color: transparent !important;
+    border-radius: 0 0 var(--tib-radius) var(--tib-radius);
+  }
+  .widget-main {
+    padding: 16px;
+  }
+  .widget-main.no-padding .table {
+    margin: 0;
+    border-radius: 0 0 var(--tib-radius) var(--tib-radius);
+  }
+  .widget-toolbox {
+    background-color: var(--tib-surface-2);
+    border-color: var(--tib-border) !important;
+  }
+
+  /* Coloured widget headers all follow the accent. */
+  [class*="widget-color-"] {
+    border-color: var(--tib-accent-solid) !important;
+
+    > .widget-header {
+      color: var(--tib-on-accent) !important;
+      background: var(--tib-accent-solid) !important;
+      border-color: var(--tib-accent-solid) !important;
+    }
+  }
+
+  /* ---- Tables ------------------------------------------------------------ */
+
+  .table {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border) !important;
+  }
+  .table > thead > tr,
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th {
+    color: var(--tib-text);
+    font-weight: 650;
+    background: var(--tib-surface-2) !important;
+    filter: none;
+  }
+  .table > thead > tr > th {
+    border-bottom: 1px solid var(--tib-border-strong) !important;
+    vertical-align: middle;
+  }
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td,
+  .table-bordered,
+  .table-bordered > thead > tr > th,
+  .table-bordered > tbody > tr > td {
+    padding: 10px 12px;
+    border-color: var(--tib-border) !important;
+  }
+  .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: var(--tib-surface-2);
+  }
+  .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: var(--tib-surface);
+  }
+  .table-hover > tbody > tr:hover,
+  .table-hover > tbody > tr:hover > td {
+    background-color: var(--tib-accent-softer) !important;
+  }
+  .table > tbody > tr.selected,
+  .table > tbody > tr.active > td,
+  .table > tbody > tr.info > td {
+    background-color: var(--tib-accent-soft) !important;
+  }
+  .table > tbody > tr.success > td { background-color: var(--tib-success-soft) !important; }
+  .table > tbody > tr.warning > td { background-color: var(--tib-warning-soft) !important; }
+  .table > tbody > tr.danger > td { background-color: var(--tib-danger-soft) !important; }
+
+  /* Rounded outer corners on standalone tables. */
+  .table-bordered {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--tib-radius);
+    overflow: hidden;
+  }
+  .table-bordered > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+    border-width: 0 0 1px 1px !important;
+  }
+  .table-bordered > :is(thead, tbody, tfoot) > tr > :is(th, td):first-child {
+    border-left-width: 0 !important;
+  }
+  .table-bordered > :is(tbody, tfoot):last-child > tr:last-child > :is(th, td) {
+    border-bottom-width: 0 !important;
+  }
+  .table-responsive {
+    border-color: var(--tib-border);
+    border-radius: var(--tib-radius);
+  }
+
+  /* DataTables toolbars above and below a table (search, page size, paging). */
+  .dataTables_wrapper {
+    .row:first-child,
+    .row:last-child {
+      margin: 0;
+      padding: 10px 4px;
+      color: var(--tib-text-muted);
+      background-color: var(--tib-surface-2) !important;
+      border: 1px solid var(--tib-border);
+    }
+    .row:first-child {
+      border-bottom: 0;
+      border-radius: var(--tib-radius) var(--tib-radius) 0 0;
+    }
+    .row:last-child {
+      border-top: 0;
+      border-radius: 0 0 var(--tib-radius) var(--tib-radius);
+    }
+    .table-bordered {
+      border-radius: 0;
+    }
+    label {
+      color: var(--tib-text-muted);
+      font-weight: 500;
+    }
+    input,
+    select {
+      height: 32px;
+      min-height: 0;
+      padding: 4px 10px;
+    }
+    .dataTables_filter input {
+      border-radius: var(--tib-radius-pill) !important;
+      padding: 4px 14px;
+    }
+    .dataTables_paginate .pagination {
+      margin: 2px 0;
+    }
+  }
+  .table thead > tr > th.sorting::after,
+  .table thead > tr > th.sorting_asc::after,
+  .table thead > tr > th.sorting_desc::after {
+    color: var(--tib-text-faint);
+  }
+
+  /* ---- Tabs -------------------------------------------------------------- */
+
+  .nav-tabs {
+    border-bottom: 1px solid var(--tib-border) !important;
+
+    > li {
+      margin-bottom: -1px;
+
+      > a,
+      > a:focus {
+        margin-right: 4px;
+        padding: 10px 16px;
+        font-weight: 600;
+        color: var(--tib-text-muted) !important;
+        background-color: transparent !important;
+        border: 0 !important;
+        border-bottom: 2px solid transparent !important;
+        border-radius: var(--tib-radius-sm) var(--tib-radius-sm) 0 0 !important;
+        box-shadow: none !important;
+      }
+      > a:hover {
+        color: var(--tib-text) !important;
+        background-color: var(--tib-surface-3) !important;
+      }
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus {
+        color: var(--tib-accent) !important;
+        background-color: transparent !important;
+        border-bottom-color: var(--tib-accent) !important;
+      }
+      > a > .ace-icon {
+        color: inherit !important;
+      }
+    }
+  }
+  .tabbable .nav-tabs {
+    position: static;
+    top: 0;
+  }
+  .tab-content {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border: 1px solid var(--tib-border) !important;
+    border-top: 0 !important;
+    border-radius: 0 0 var(--tib-radius) var(--tib-radius);
+    padding: 16px;
+  }
+
+  /* ---- Panels and accordions --------------------------------------------- */
+
+  .panel {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border: 1px solid var(--tib-border) !important;
+    border-radius: var(--tib-radius) !important;
+    box-shadow: none;
+  }
+  .panel-group .panel + .panel {
+    margin-top: 8px;
+  }
+  .panel-heading {
+    color: var(--tib-text) !important;
+    background: var(--tib-surface-2) !important;
+    border-color: var(--tib-border) !important;
+    border-radius: calc(var(--tib-radius) - 1px) calc(var(--tib-radius) - 1px) 0 0;
+  }
+  .panel-body,
+  .panel-footer {
+    border-color: var(--tib-border) !important;
+  }
+  .panel-footer {
+    background: var(--tib-surface-2);
+  }
+  .accordion-style1.panel-group .panel-heading .accordion-toggle,
+  .accordion-style2.panel-group .panel-heading .accordion-toggle {
+    color: var(--tib-text) !important;
+    background-color: var(--tib-surface-2) !important;
+    border: 0 !important;
+    font-weight: 600;
+    border-radius: calc(var(--tib-radius) - 1px);
+  }
+  .accordion-style1.panel-group .panel-heading .accordion-toggle:not(.collapsed),
+  .accordion-style2.panel-group .panel-heading .accordion-toggle:not(.collapsed) {
+    color: var(--tib-accent) !important;
+    background-color: var(--tib-accent-softer) !important;
+    border-radius: calc(var(--tib-radius) - 1px) calc(var(--tib-radius) - 1px) 0 0;
+  }
+
+  /* ---- Profile / detail tables (label on the left, value on the right) ---- */
+
+  .profile-user-info {
+    border-color: var(--tib-border);
+  }
+  .profile-user-info-striped {
+    border: 1px solid var(--tib-border);
+    border-radius: var(--tib-radius);
+    overflow: hidden;
+  }
+  .profile-info-name {
+    font-weight: 600;
+    color: var(--tib-text-muted) !important;
+    background-color: var(--tib-surface-2) !important;
+    border-color: var(--tib-border) !important;
+  }
+  .profile-info-value {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border) !important;
+  }
+  .profile-info-row:first-child > div {
+    border-top: 0 !important;
+  }
+
+  /* Ace dashboard number boxes. */
+  .infobox {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border: 1px solid var(--tib-border) !important;
+    border-radius: var(--tib-radius);
+    box-shadow: none;
+  }
+  .infobox > .infobox-data > .infobox-content {
+    color: var(--tib-text-muted);
+  }
+
+  .progress {
+    background-color: var(--tib-surface-3);
+    border-radius: var(--tib-radius-pill);
+    box-shadow: none;
+  }
+  .progress-bar {
+    background-color: var(--tib-accent-solid);
+  }
+
+  .list-group-item {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border);
+  }
+  .list-group-item:first-child { border-radius: var(--tib-radius) var(--tib-radius) 0 0; }
+  .list-group-item:last-child { border-radius: 0 0 var(--tib-radius) var(--tib-radius); }
+}
+
+/* ---- Dark mode fallbacks for colours written straight into the HTML ------- */
+
+:root[data-tib][data-tib-theme="dark"] {
+  /* bgcolor="..." on old tables, usually white or a pale grey/blue. */
+  :is(table, tr, td, th)[bgcolor] {
+    background-color: var(--tib-surface-2) !important;
+  }
+
+  :is(div, span, p, td, th, tr, table, section, font, b, strong, label)[style*="background" i]:is(
+      [style*="background-color:#fff" i],
+      [style*="background-color: #fff" i],
+      [style*="background:#fff" i],
+      [style*="background: #fff" i],
+      [style*="background-color:white" i],
+      [style*="background-color: white" i],
+      [style*="background-color: rgb(255, 255, 255)" i],
+      [style*="#f5f5f5" i],
+      [style*="#f9f9f9" i],
+      [style*="#eaeaea" i],
+      [style*="#eeeeee" i]
+    ) {
+    background-color: var(--tib-surface-2) !important;
+  }
+
+  :is(div, span, p, td, th, font, b, strong, label, a, li)[style*="color" i]:is(
+      [style*="color:#000" i],
+      [style*="color: #000" i],
+      [style*="color:black" i],
+      [style*="color: black" i],
+      [style*="color:#333" i],
+      [style*="color: #333" i],
+      [style*="rgb(0, 0, 0)" i]
+    ) {
+    color: var(--tib-text) !important;
+  }
+
+  font[color="black" i],
+  font[color="#000000" i],
+  font[color="#000" i],
+  font[color="#333333" i],
+  font[color="navy" i],
+  font[color="#000080" i],
+  font[color="blue" i],
+  font[color="#0000ff" i] {
+    color: var(--tib-text) !important;
+  }
+  font[color="red" i],
+  font[color="#ff0000" i] {
+    color: var(--tib-danger) !important;
+  }
+
+  /* Images with dark-on-transparent artwork (logos, signatures) get a light plate. */
+  .page-content img[src*="logo" i] {
+    padding: 6px;
+    background-color: #ffffff;
+    border-radius: var(--tib-radius-sm);
+  }
+}

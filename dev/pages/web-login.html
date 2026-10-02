@@ -1,0 +1,528 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>TAR UMT - Student Intranet </title>
+		<link rel="shortcut icon" href="images/tarIco.ico"/>
+		<meta name="description" content="User login page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		
+
+
+
+
+
+
+
+
+		
+				<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/font-awesome.css" />
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/jquery-ui.custom.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/chosen.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/datepicker.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/bootstrap-timepicker.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/daterangepicker.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/bootstrap-datetimepicker.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/colorpicker.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/ace-fonts.css" />
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/font-awesome-animation.min.css">
+		<!-- ace styles -->
+		<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/ace-ie.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="https://web.tarc.edu.my/portal/assets/js/ace-extra.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="https://web.tarc.edu.my/portal/assets/js/html5shiv.js"></script>
+		<script src="https://web.tarc.edu.my/portal/assets/js/respond.js"></script>
+		<![endif]-->
+        <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/print.css" />
+		
+		<style>
+		.password-wrapper .toggle-eye {
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			transform: translateY(-50%);
+			color: #888;
+			cursor: pointer;
+			z-index: 5;
+			display: none; /* hidden by default */
+		}
+
+		.password-wrapper input {
+			padding-right: 35px;
+		}
+		
+		.social-login{
+			margin:5px 0;
+		}
+		
+		.social-login-img{
+			margin:0 0 5px 1px;
+		}
+
+		</style>
+		
+	</head>
+
+	<script src="js/rc4.js"></script>
+	<script>
+	function submitLogin(){
+				
+		var username = document.loginForm.username.value;	
+		var password = document.loginForm.password.value;		
+				
+		if(username=="")
+			document.loginForm.username.focus();
+		else if(password=="")
+			document.loginForm.password.focus();
+		else
+			document.loginForm.submit();		
+	}
+	
+	function submitResetPwd(){
+				
+		var txtsid = document.getElementById("txtsid").value;	
+		var txtIc  = document.getElementById("txtIc").value;	
+				
+		if(txtsid=="")
+			document.getElementById("txtsid").focus();
+		else if(txtIc=="")
+			document.getElementById("txtIc").focus();
+		else
+			//document.getElementById("frm_resetPwd").submit();	
+			retrieve();
+	}
+		
+	function  GetEnter(evt){
+		evt = (evt) ? evt : window.event;
+		var charCode = (evt.which) ? evt.which : evt.keyCode;
+		
+		if(charCode==13){ //Enter
+			loginForm.submit();
+			return false;
+		}else
+			return true;
+	}
+
+	</script>
+	
+	<body class="login-layout light-login">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+                    	<h1 align="center">
+							<a href="https://www.tarc.edu.my" target="_tab"><img src="https://web.tarc.edu.my/portal/images/tarumt-logo.png" width="250"></a> <BR>                          
+							<span class="light black" id="id-text2">Student Intranet</span>
+                        </h1>
+                    
+						<div class="login-container">
+
+							<div class="space-6"></div>
+
+				
+				
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="ace-icon fa fa-leaf green"></i>
+												Please Enter Your Information
+											</h4>
+
+											<div class="space-6"></div>
+
+											<form name="loginForm" id="loginForm" action="loginProcess.jsp" method="post"  autocomplete="off">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-left">
+															<input type="text" name="username"  id="username" class="form-control" placeholder="Login ID" maxlength="7" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-left password-wrapper">
+															<input type="password" name="password" id="password" class="form-control"
+																   placeholder="Password" onKeyPress="return GetEnter(event)" />
+															<i class="ace-icon fa fa-lock"></i>
+
+															<a href="javascript:void(0)" onclick="togglePassword()" class="toggle-eye">
+																<i id="toggleIcon" class="ace-icon fa fa-eye-slash bigger-130"></i>
+															</a>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<!--label class="inline">
+															<input type="checkbox" class="ace" id="remember" name="remember"/>
+															<span class="lbl"> Remember Me</span>
+														</label-->
+
+														<button type="button" name="btnLogin" class="width-35 pull-right btn btn-sm btn-primary" onclick="submitLogin()" >
+															<i class="ace-icon fa fa-key"></i>
+															<span class="bigger-110">Login</span>
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+                                                 
+											</form>
+											
+											
+											<script>
+											document.addEventListener("DOMContentLoaded", function () {
+
+												const pwd = document.getElementById("password");
+												const eye = document.querySelector(".toggle-eye");
+												const icon = document.getElementById("toggleIcon");
+
+												let revealTimer = null;
+
+												if (!pwd || !eye || !icon) return; // safety check
+
+												// show/hide eye based on input
+												pwd.addEventListener("input", function () {
+													if (this.value.length > 0) {
+														eye.style.display = "block";
+													} else {
+														eye.style.display = "none";
+														resetPassword();
+													}
+												});
+
+												window.togglePassword = function () {
+
+													if (!pwd.value) return;
+
+													if (revealTimer) {
+														clearTimeout(revealTimer);
+													}
+
+													// show password
+													pwd.type = "text";
+													icon.classList.replace("fa-eye-slash","fa-eye");
+
+													revealTimer = setTimeout(() => {
+														resetPassword();
+													}, 1000);
+												};
+
+												function resetPassword(){
+													pwd.type = "password";
+													icon.classList.replace("fa-eye","fa-eye-slash");
+												}
+
+											});
+											</script>
+											
+											<div class="social-or-login center">
+												<span class="bigger-110">Quick Links</span>
+											</div>
+
+											<div class="space-6"></div>
+
+											<div class="social-login left">
+												<a  href="https:\\reg.tarc.edu.my\portal\" class="btn">
+													 &nbsp;
+													<img class="social-login-img" src="https://web.tarc.edu.my/portal/images/tarucLogo.png" width="25px">
+													 &nbsp; &nbsp; <span class="blue">Course Registration Portal</span>
+												</a>
+
+												 
+											</div>
+
+											
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar clearfix">
+											<div>
+												<a href="https://web.tarc.edu.my/portal/retrievenewPass_stu.jsp" class="forgot-password-link">
+													<i class="ace-icon fa fa-arrow-left"></i>
+													I forgot my password
+												</a>
+											</div>
+
+											
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.login-box -->
+                                
+                               
+
+								<div id="forgot-box" class="forgot-box widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header red lighter bigger">
+												<i class="ace-icon fa fa-key"></i>
+												Retrieve Password
+											</h4>
+
+											<div class="space-6"></div>
+											<p>
+												Enter your login id and NRIC no. and to retrieve your password
+											</p>
+
+											<form name="frm_resetPwd" id="frm_resetPwd" method="post" onsubmit="retrieve();return false;">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" name="txtsid" id="txtsid" class="form-control" placeholder="Student ID Number" />
+														</span>
+													</label>
+												
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" name="txtIc" id="txtIc" class="form-control" placeholder="NRIC" />
+														</span>
+													</label>
+													
+													<div class="clearfix">
+														<button type="button" class="width-35 pull-right btn btn-sm btn-danger" onclick="submitResetPwd()">
+															<i class="ace-icon fa fa-lightbulb-o"></i>
+															<span class="bigger-110">Submit !</span>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar center">
+											<a href="#" data-target="#login-box" class="back-to-login-link">
+												Back to login
+												<i class="ace-icon fa fa-arrow-right"></i>
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.forgot-box -->
+
+						
+							</div><!-- /.position-relative -->
+			
+						
+             	
+				
+				</div>
+                        
+               
+                        
+                        
+                        
+                         <div class="center">								
+							<span class="black small"><a href="http://www.tarc.edu.my/disclaimer.jsp" target="_blank">DISCLAIMER</a> | <a href="http://www.tarc.edu.my/privacy-policy.jsp" target="_blank">PRIVACY POLICY</a> | <a href="https://www.tarc.edu.my/files/tarc/TARUMT_ABAC_Policy.pdf" target="_blank">ABAC Policy</a>  | COPYRIGHT &copy; 2026 TAR UMT. ALL RIGHTS RESERVED</span>
+						</div>
+                        
+                        
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+                
+                   <div class="center">
+                <div class="alert alert-info" id="rtReturn" style="display:none;">
+                    
+                    <strong>
+                        <i class="ace-icon fa fa-info blue fa-2x"></i>   
+                        <span class="bigger-150">    </span> 
+                    </strong><br />
+                     <div id="txthint"></div>
+                    <br />
+                </div>
+ 			</div>                                                      
+			 
+			 
+                
+			</div><!-- /.main-content -->
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+		
+
+		 
+
+		<!-- inline scripts related to this page -->
+		
+		<script src="js/jquery-4.0.0.min.js"></script>
+		<script src="js/jstorage.js"></script>
+		<script src="js/login.js"></script>
+            
+
+    
+		<script type="text/javascript">
+			jQuery(function($) {
+			 $(document).on('click', '.toolbar a[data-target]', function(e) {
+				e.preventDefault();
+				var target = $(this).data('target');
+				$('.widget-box.visible').removeClass('visible');//hide others
+				$(target).addClass('visible');//show target
+			 });
+			});
+			
+			
+			
+			//you don't need this, just used for changing background
+			jQuery(function($) {
+			 /*$('#btn-login-dark').on('click', function(e) {
+				$('body').attr('class', 'login-layout');
+				$('#id-text2').attr('class', 'white');
+				$('#id-company-text').attr('class', 'blue');
+				
+				e.preventDefault();
+			 });*/
+			 $('#btn-login-light').on('click', function(e) {
+				$('body').attr('class', 'login-layout light-login');
+				$('#id-text2').attr('class', 'grey');
+				$('#id-company-text').attr('class', 'blue');
+				
+				e.preventDefault();
+			 });/*
+			 $('#btn-login-blur').on('click', function(e) {
+				$('body').attr('class', 'login-layout blur-login');
+				$('#id-text2').attr('class', 'white');
+				$('#id-company-text').attr('class', 'light-blue');
+				
+				e.preventDefault();
+			 });*/
+			 
+			});
+			
+			
+			jQuery(function($) {
+				$(document).ready(function () {
+					let eventMap = new Map();
+					let eventTextColorMap = new Map();
+					// Key = image, Value = "start::end" (dd-mm-yyyy)
+					eventMap.set("deepavali.jpg", "16-10-2025::21-10-2025");
+					eventTextColorMap.set("deepavali.jpg", "#ffd000"); //textcolor set optional
+					eventMap.set("christmas.jpg", "19-12-2025::02-01-2026");
+					eventMap.set("CNY.jpg", "11-02-2026::28-02-2026");
+					eventMap.set("RAYA.jpg", "16-03-2026::29-03-2026");
+					eventTextColorMap.set("RAYA.jpg", "#ffd92a");
+
+					//eventMap.set("newyear.jpg", "01-01-2026::01-01-2026");
+
+					// Get today's date (midnight for clean compare)
+					
+					let today = new Date("2026-10-01");
+					//let today = new Date();
+					today.setHours(0, 0, 0, 0);
+
+					let bgImage = "";
+
+					// First, check event ranges
+					for (let [img, range] of eventMap.entries()) {
+						let [startStr, endStr] = range.split("::");
+
+						// Convert dd-mm-yyyy → Date
+						let [sd, sm, sy] = startStr.split("-").map(Number);
+						let [ed, em, ey] = endStr.split("-").map(Number);
+
+						let startDate = new Date(sy, sm - 1, sd);
+						let endDate = new Date(ey, em - 1, ed);
+
+						if (today >= startDate && today <= endDate) {
+							bgImage = img;
+							break; // stop at first matching event
+						}
+					}
+
+					// If no event matched, fall back to season
+					if (!bgImage) {
+						var month = today.getMonth()+1;
+
+						if (month >= 3 && month <= 5) { 
+							// March–May: Spring
+							bgImage = "bg3_spring.jpg";
+						} else if (month >= 6 && month <= 8) { 
+							// June–August: Summer
+							bgImage = "bg3_summer.jpg";
+						} else if (month >= 9 && month <= 11) { 
+							// September–November: Autumn
+							bgImage = "bg3_autumn.jpg";
+						} else { 
+							// December–February: Winter
+							bgImage = "bg3_winter.jpg";
+						}
+					}
+
+					// Apply background
+					$('body.light-login').css({
+						"background-image": "url('https://web.tarc.edu.my/portal/assets/css/images/" + bgImage + "?v=20251015')",
+						"background-size": "cover",
+						"background-position": "center center",
+						"background-repeat": "no-repeat"
+					});
+					
+					let strColor = "#333333";
+					if(eventTextColorMap.has(bgImage))
+						strColor = eventTextColorMap.get(bgImage);
+					$('#id-text2').css({
+						"color": strColor
+					});
+					
+					
+				});
+			});
+		</script>
+		
+	</body>
+</html>
+

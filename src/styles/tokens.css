@@ -1,0 +1,149 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Every colour, radius and shadow the skin uses. Nothing here applies unless src/theme.js
+ * has set data-tib on <html>, which is how the on/off switch in the popup works.
+ *
+ * Text colours are chosen to reach WCAG AA (4.5:1) against the surfaces they sit on.
+ */
+
+:root[data-tib] {
+  color-scheme: light;
+
+  --tib-font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
+  --tib-font-display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
+  --tib-text-size: 14px;
+
+  --tib-bg: #f3f5f9;
+  --tib-surface: #ffffff;
+  --tib-surface-2: #f6f8fb;
+  --tib-surface-3: #eceff5;
+  --tib-surface-glass: rgb(255 255 255 / 0.9);
+  --tib-border: #e1e5ec;
+  --tib-border-strong: #c6cdd8;
+  --tib-text: #1a2130;
+  --tib-text-muted: #586274;
+  --tib-text-faint: #6b7587;
+
+  --tib-success: #177245;
+  --tib-warning: #8a5300;
+  --tib-danger: #c0262d;
+  --tib-info: #0b6aa2;
+  --tib-success-solid: #1a7f4c;
+  --tib-warning-solid: #f0a020;
+  --tib-danger-solid: #c8323a;
+  --tib-info-solid: #0d76b4;
+  --tib-on-warning: #2b1a00;
+
+  --tib-radius-sm: 8px;
+  --tib-radius: 12px;
+  --tib-radius-lg: 18px;
+  --tib-radius-pill: 999px;
+
+  --tib-shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06), 0 1px 3px rgb(16 24 40 / 0.06);
+  --tib-shadow: 0 4px 12px -2px rgb(16 24 40 / 0.08), 0 2px 4px -2px rgb(16 24 40 / 0.05);
+  --tib-shadow-lg: 0 24px 48px -12px rgb(16 24 40 / 0.25);
+
+  --tib-ease: cubic-bezier(0.2, 0, 0, 1);
+  --tib-speed: 160ms;
+
+  /* Accent: text-on-surface colour, and a solid fill that white text reads well on. */
+  --tib-accent: #1d5fd1;
+  --tib-accent-solid: #1d5fd1;
+  --tib-accent-solid-hover: #174fb0;
+  --tib-on-accent: #ffffff;
+
+  --tib-accent-soft: color-mix(in srgb, var(--tib-accent) 10%, var(--tib-surface));
+  --tib-accent-softer: color-mix(in srgb, var(--tib-accent) 6%, var(--tib-surface));
+  --tib-focus: color-mix(in srgb, var(--tib-accent) 55%, transparent);
+  --tib-success-soft: color-mix(in srgb, var(--tib-success-solid) 12%, var(--tib-surface));
+  --tib-warning-soft: color-mix(in srgb, var(--tib-warning-solid) 16%, var(--tib-surface));
+  --tib-danger-soft: color-mix(in srgb, var(--tib-danger-solid) 11%, var(--tib-surface));
+  --tib-info-soft: color-mix(in srgb, var(--tib-info-solid) 11%, var(--tib-surface));
+}
+
+:root[data-tib][data-tib-text="large"] {
+  --tib-text-size: 16px;
+}
+
+:root[data-tib][data-tib-theme="dark"] {
+  color-scheme: dark;
+
+  --tib-bg: #0e1117;
+  --tib-surface: #161a22;
+  --tib-surface-2: #1b2029;
+  --tib-surface-3: #242a35;
+  --tib-surface-glass: rgb(22 26 34 / 0.88);
+  --tib-border: #2a313d;
+  --tib-border-strong: #3a4352;
+  --tib-text: #e7eaf0;
+  --tib-text-muted: #a3acba;
+  --tib-text-faint: #8d97a7;
+
+  --tib-success: #5fd394;
+  --tib-warning: #f5be5b;
+  --tib-danger: #ff8a8f;
+  --tib-info: #6cc0f5;
+  --tib-success-solid: #1a7f4c;
+  --tib-warning-solid: #e4a02e;
+  --tib-danger-solid: #c8323a;
+  --tib-info-solid: #0d76b4;
+
+  --tib-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --tib-shadow: 0 4px 14px -2px rgb(0 0 0 / 0.45);
+  --tib-shadow-lg: 0 24px 56px -12px rgb(0 0 0 / 0.7);
+
+  --tib-accent: #84aefc;
+  --tib-accent-solid: #2d68d8;
+  --tib-accent-solid-hover: #3b78ea;
+
+  --tib-accent-soft: color-mix(in srgb, var(--tib-accent) 16%, var(--tib-surface));
+  --tib-accent-softer: color-mix(in srgb, var(--tib-accent) 9%, var(--tib-surface));
+  --tib-success-soft: color-mix(in srgb, var(--tib-success-solid) 22%, var(--tib-surface));
+  --tib-warning-soft: color-mix(in srgb, var(--tib-warning-solid) 18%, var(--tib-surface));
+  --tib-danger-soft: color-mix(in srgb, var(--tib-danger-solid) 22%, var(--tib-surface));
+  --tib-info-soft: color-mix(in srgb, var(--tib-info-solid) 24%, var(--tib-surface));
+}
+
+/* ---- Accent choices ---------------------------------------------------- */
+
+:root[data-tib][data-tib-accent="teal"] {
+  --tib-accent: #0f766e;
+  --tib-accent-solid: #0f766e;
+  --tib-accent-solid-hover: #0b5f58;
+}
+:root[data-tib][data-tib-accent="violet"] {
+  --tib-accent: #6d28d9;
+  --tib-accent-solid: #6d28d9;
+  --tib-accent-solid-hover: #5b21b6;
+}
+:root[data-tib][data-tib-accent="rose"] {
+  --tib-accent: #be123c;
+  --tib-accent-solid: #be123c;
+  --tib-accent-solid-hover: #9f1239;
+}
+:root[data-tib][data-tib-accent="green"] {
+  --tib-accent: #15803d;
+  --tib-accent-solid: #15803d;
+  --tib-accent-solid-hover: #166534;
+}
+
+:root[data-tib][data-tib-theme="dark"][data-tib-accent="teal"] {
+  --tib-accent: #4fd1c5;
+  --tib-accent-solid: #0f766e;
+  --tib-accent-solid-hover: #128a80;
+}
+:root[data-tib][data-tib-theme="dark"][data-tib-accent="violet"] {
+  --tib-accent: #b99cfa;
+  --tib-accent-solid: #7037de;
+  --tib-accent-solid-hover: #7f4aea;
+}
+:root[data-tib][data-tib-theme="dark"][data-tib-accent="rose"] {
+  --tib-accent: #fb8aa5;
+  --tib-accent-solid: #c11d45;
+  --tib-accent-solid-hover: #d42a53;
+}
+:root[data-tib][data-tib-theme="dark"][data-tib-accent="green"] {
+  --tib-accent: #63d48e;
+  --tib-accent-solid: #16803e;
+  --tib-accent-solid-hover: #1a944a;
+}
