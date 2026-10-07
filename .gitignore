@@ -7,3 +7,4 @@ dev/pages/*
 !dev/pages/web-forgot.html
 !dev/pages/reg-login.html
 !dev/pages/mock-dashboard.html
+!dev/pages/mock-components.html

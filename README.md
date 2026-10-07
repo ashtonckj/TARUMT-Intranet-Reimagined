@@ -33,7 +33,8 @@ There is no build step. Edit a file, then click the reload arrow on the extensio
 | `src/styles/base.css` | Type, links, focus rings, inputs, buttons, alerts, labels, menus. |
 | `src/styles/login.css` | Login and forgot-password pages. |
 | `src/styles/layout.css` | Top bar, sidebar, breadcrumbs, page title, footer. |
-| `src/styles/components.css` | Cards, tables, tabs, panels, profile tables, plus dark-mode fixes for colours hard-coded in the site's HTML. |
+| `src/styles/components.css` | Cards, tables, tabs, panels, profile tables, timelines, inbox, plus dark-mode fixes for colours hard-coded in the site's HTML. |
+| `src/styles/plugins.css` | Third-party widgets the site loads: Chosen selects, the date, date-range, time and colour pickers, jQuery UI and jqGrid. |
 | `popup/` | The settings popup. |
 
 The intranet is built on the Ace admin template (Bootstrap 3). Ace marks many colours `!important`, so some rules here are `!important` too.
@@ -48,6 +49,12 @@ python dev/serve.py
 ```
 
 Then open `http://localhost:8765/dev/preview/web-login.html?theme=dark`. Query options: `theme=system|light|dark`, `accent=blue|teal|violet|rose|green`, `text=large`, `bg=plain`, `off=1`.
+
+`mock-components.html` lays out every widget the site's stylesheets define (pickers, Chosen, jQuery UI, jqGrid, Ace extras) with their popups open. To find anything dark mode misses, open a preview with `?theme=dark` and run this in the DevTools console. It lists light backgrounds and low-contrast text:
+
+```js
+(await import("http://localhost:8765/dev/audit.js")).audit()
+```
 
 To add a page, open it on the intranet, press **Ctrl+S**, choose **Webpage, HTML only**, and save it into `dev/pages/`. Pages saved after logging in contain your personal details, so `.gitignore` keeps them out of git. Only the public login pages and `mock-dashboard.html`, a stand-in built from the Ace template, are committed.
 

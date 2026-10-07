@@ -130,9 +130,15 @@
   .table > tbody > tr.info > td {
     background-color: var(--tib-accent-soft) !important;
   }
-  .table > tbody > tr.success > td { background-color: var(--tib-success-soft) !important; }
-  .table > tbody > tr.warning > td { background-color: var(--tib-warning-soft) !important; }
-  .table > tbody > tr.danger > td { background-color: var(--tib-danger-soft) !important; }
+  .table > :is(thead, tbody, tfoot) > tr > :is(td, th):is(.active, .info) {
+    background-color: var(--tib-accent-soft) !important;
+  }
+  .table > :is(thead, tbody, tfoot) > tr.success > :is(td, th),
+  .table > :is(thead, tbody, tfoot) > tr > :is(td, th).success { background-color: var(--tib-success-soft) !important; }
+  .table > :is(thead, tbody, tfoot) > tr.warning > :is(td, th),
+  .table > :is(thead, tbody, tfoot) > tr > :is(td, th).warning { background-color: var(--tib-warning-soft) !important; }
+  .table > :is(thead, tbody, tfoot) > tr.danger > :is(td, th),
+  .table > :is(thead, tbody, tfoot) > tr > :is(td, th).danger { background-color: var(--tib-danger-soft) !important; }
 
   /* Rounded outer corners on standalone tables. */
   .table-bordered {
@@ -240,6 +246,74 @@
     position: static;
     top: 0;
   }
+  /* Ace's tinted tab strips (.tab-color-blue, .background-blue and friends). */
+  .nav-tabs[class*="background-"] {
+    padding: 6px 8px 0;
+    background-color: var(--tib-surface-2) !important;
+    border: 1px solid var(--tib-border) !important;
+    border-radius: var(--tib-radius) var(--tib-radius) 0 0;
+  }
+  .nav-tabs[class*="tab-color-"] > li > a {
+    color: var(--tib-text-muted) !important;
+    background-color: transparent !important;
+  }
+  .nav-tabs[class*="tab-color-"] > li.active > a {
+    color: var(--tib-accent) !important;
+  }
+
+  /* Tabs down the left side or along the bottom. */
+  .tabs-left > .nav-tabs {
+    border-bottom: 0 !important;
+    border-right: 1px solid var(--tib-border) !important;
+
+    > li {
+      margin: 0 -1px 2px 0;
+
+      > a,
+      > a:focus {
+        margin: 0;
+        border-bottom: 0 !important;
+        border-right: 2px solid transparent !important;
+        border-radius: var(--tib-radius-sm) 0 0 var(--tib-radius-sm) !important;
+      }
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus {
+        border-right-color: var(--tib-accent) !important;
+        background-color: var(--tib-accent-softer) !important;
+      }
+    }
+  }
+  .tabs-left > .tab-content {
+    border-top: 1px solid var(--tib-border) !important;
+    border-left: 0 !important;
+    border-radius: 0 var(--tib-radius) var(--tib-radius) 0;
+  }
+  .tabs-below > .nav-tabs {
+    border-top: 1px solid var(--tib-border) !important;
+    border-bottom: 0 !important;
+
+    > li {
+      margin: -1px 0 0;
+
+      > a,
+      > a:focus {
+        border-bottom: 0 !important;
+        border-top: 2px solid transparent !important;
+        border-radius: 0 0 var(--tib-radius-sm) var(--tib-radius-sm) !important;
+      }
+      &.active > a,
+      &.active > a:hover,
+      &.active > a:focus {
+        border-top-color: var(--tib-accent) !important;
+      }
+    }
+  }
+  .tabs-below > .tab-content {
+    border-top: 1px solid var(--tib-border) !important;
+    border-bottom: 0 !important;
+    border-radius: var(--tib-radius) var(--tib-radius) 0 0;
+  }
   .tab-content {
     color: var(--tib-text);
     background-color: var(--tib-surface);
@@ -273,6 +347,23 @@
   }
   .panel-footer {
     background: var(--tib-surface-2);
+  }
+  .panel-group .panel,
+  .panel-collapse {
+    background-color: var(--tib-surface) !important;
+  }
+  .accordion-style1.panel-group .collapse.in > .panel-body {
+    border-color: var(--tib-border) !important;
+  }
+  /* Coloured panels keep a hint of their colour in the heading. */
+  .panel-primary > .panel-heading { color: var(--tib-on-accent) !important; background: var(--tib-accent-solid) !important; }
+  .panel-success > .panel-heading { background: var(--tib-success-soft) !important; }
+  .panel-info > .panel-heading { background: var(--tib-info-soft) !important; }
+  .panel-warning > .panel-heading { background: var(--tib-warning-soft) !important; }
+  .panel-danger > .panel-heading { background: var(--tib-danger-soft) !important; }
+  .panel-primary { border-color: var(--tib-accent-solid) !important; }
+  .panel-heading > .panel-title {
+    color: inherit;
   }
   .accordion-style1.panel-group .panel-heading .accordion-toggle,
   .accordion-style2.panel-group .panel-heading .accordion-toggle {
@@ -325,6 +416,8 @@
   .infobox > .infobox-data > .infobox-content {
     color: var(--tib-text-muted);
   }
+  .infobox .stat-success { color: var(--tib-success); }
+  .infobox :is(.stat-important, .stat-danger) { color: var(--tib-danger); }
 
   .progress {
     background-color: var(--tib-surface-3);
@@ -334,14 +427,135 @@
   .progress-bar {
     background-color: var(--tib-accent-solid);
   }
+  .progress-bar-success { background-color: var(--tib-success-solid); }
+  .progress-bar-warning { background-color: var(--tib-warning-solid); }
+  .progress-bar-danger { background-color: var(--tib-danger-solid); }
+  .progress-bar-info { background-color: var(--tib-info-solid); }
+  .progress[data-percent]::after {
+    color: var(--tib-text);
+  }
 
-  .list-group-item {
+  .pricing-box .price {
+    color: var(--tib-text);
+  }
+
+  /* ---- Timeline, chat bubbles, activity feed ------------------------------ */
+
+  .timeline-container::before,
+  .timeline-items::before {
+    background-color: var(--tib-border);
+    border-color: var(--tib-border);
+  }
+  .timeline-item .widget-box {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-2);
+  }
+  .timeline-item .transparent.widget-box {
+    border-left: 3px solid var(--tib-border-strong) !important;
+  }
+  .timeline-item .transparent .widget-header {
+    background-color: var(--tib-surface-3) !important;
+  }
+  .timeline-info .timeline-indicator {
+    box-shadow: 0 0 0 3px var(--tib-bg);
+  }
+
+  .itemdiv.dialogdiv > .body {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border);
+    border-left-color: var(--tib-accent-solid);
+  }
+  .itemdiv.dialogdiv > .body::before {
+    background-color: var(--tib-surface);
+    border-color: var(--tib-accent-solid);
+  }
+  .itemdiv > .body > .time,
+  .itemdiv > .body > .text {
+    color: var(--tib-text-muted);
+  }
+  .itemdiv.dialogdiv::before {
+    background-color: var(--tib-border);
+  }
+  .itemdiv > .user > img {
+    border-color: var(--tib-border);
+  }
+
+  .profile-activity {
+    border-color: var(--tib-border);
+  }
+  .profile-activity:hover {
+    background-color: var(--tib-surface-2);
+  }
+  .profile-activity .time {
+    color: var(--tib-text-muted);
+  }
+  .profile-activity a.user {
+    color: var(--tib-accent);
+  }
+
+  /* ---- Task list, inbox, rich-text editor ---------------------------------- */
+
+  .item-list > li {
     color: var(--tib-text);
     background-color: var(--tib-surface);
     border-color: var(--tib-border);
   }
-  .list-group-item:first-child { border-radius: var(--tib-radius) var(--tib-radius) 0 0; }
-  .list-group-item:last-child { border-radius: 0 0 var(--tib-radius) var(--tib-radius); }
+  .item-list > li.selected,
+  .item-list > li.selected :is(label, .lbl) {
+    color: var(--tib-text-faint);
+    background-color: var(--tib-surface-2);
+  }
+
+  .message-navbar {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-2);
+    border-color: var(--tib-border);
+  }
+  .message-item {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border);
+  }
+  .message-item:hover,
+  .message-item.selected {
+    background-color: var(--tib-accent-softer);
+    border-color: var(--tib-border-strong);
+  }
+  .message-unread .sender,
+  .message-unread .text {
+    color: var(--tib-text);
+    font-weight: 650;
+  }
+  .message-item .sender,
+  .message-item .summary .text {
+    color: var(--tib-text-muted);
+  }
+  .message-item .time {
+    color: var(--tib-text-faint);
+  }
+  .message-content,
+  .message-footer {
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border);
+  }
+  .message-header .sender {
+    color: var(--tib-text);
+  }
+
+  .wysiwyg-editor {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border-strong);
+    border-radius: 0 0 var(--tib-radius-sm) var(--tib-radius-sm);
+  }
+  .wysiwyg-editor:focus {
+    background-color: var(--tib-surface);
+  }
+  .wysiwyg-toolbar {
+    background-color: var(--tib-surface-2);
+    border-color: var(--tib-border);
+  }
 }
 
 /* ---- Dark mode fallbacks for colours written straight into the HTML ------- */

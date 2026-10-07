@@ -31,7 +31,8 @@
         "src/styles/base.css",
         "src/styles/login.css",
         "src/styles/layout.css",
-        "src/styles/components.css"
+        "src/styles/components.css",
+        "src/styles/plugins.css"
       ]
     }
   ]

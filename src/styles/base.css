@@ -65,6 +65,57 @@
   .orange, .light-orange, .orange2 { color: var(--tib-warning) !important; }
   .black, .dark, .bolder.dark { color: var(--tib-text) !important; }
 
+  /* Bootstrap's text and background helpers. */
+  .text-primary, .text-info { color: var(--tib-accent); }
+  .text-success { color: var(--tib-success); }
+  .text-warning { color: var(--tib-warning); }
+  .text-danger { color: var(--tib-danger); }
+  .bg-primary { color: var(--tib-on-accent); background-color: var(--tib-accent-solid); }
+  .bg-success { color: var(--tib-text); background-color: var(--tib-success-soft); }
+  .bg-info { color: var(--tib-text); background-color: var(--tib-info-soft); }
+  .bg-warning { color: var(--tib-text); background-color: var(--tib-warning-soft); }
+  .bg-danger { color: var(--tib-text); background-color: var(--tib-danger-soft); }
+
+  code,
+  kbd,
+  pre {
+    font-family: ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
+  }
+  code {
+    color: var(--tib-danger);
+    background-color: var(--tib-danger-soft);
+    border-radius: 5px;
+  }
+  kbd {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-3);
+    border: 1px solid var(--tib-border-strong);
+    border-radius: 5px;
+    box-shadow: none;
+  }
+  pre {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-2);
+    border: 1px solid var(--tib-border);
+    border-radius: var(--tib-radius-sm);
+  }
+  pre code {
+    color: inherit;
+    background: transparent;
+  }
+  mark,
+  .mark {
+    color: var(--tib-text);
+    background-color: color-mix(in srgb, var(--tib-warning-solid) 35%, transparent);
+  }
+  blockquote {
+    border-color: var(--tib-border-strong);
+  }
+  blockquote small,
+  blockquote footer {
+    color: var(--tib-text-muted);
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -181,27 +232,44 @@
     outline-offset: 2px;
   }
 
-  /* Chosen (searchable selects). */
-  .chosen-container-single .chosen-single,
-  .chosen-container-multi .chosen-choices {
+  .form-control-static {
     color: var(--tib-text);
-    background: var(--tib-surface) !important;
+  }
+  .has-success :is(.control-label, .help-block, .ace-icon) { color: var(--tib-success) !important; }
+  .has-warning :is(.control-label, .help-block, .ace-icon) { color: var(--tib-warning) !important; }
+  .has-error :is(.control-label, .help-block, .ace-icon) { color: var(--tib-danger) !important; }
+  .has-success :is(input, select, textarea, .form-control) { border-color: var(--tib-success-solid) !important; }
+  .has-warning :is(input, select, textarea, .form-control) { border-color: var(--tib-warning-solid) !important; }
+  .has-error :is(input, select, textarea, .form-control) { border-color: var(--tib-danger-solid) !important; }
+
+  /* Ace's styled file input (a fake text box over the real <input type="file">). */
+  .ace-file-input .ace-file-container {
+    color: var(--tib-text-muted);
+    background-color: var(--tib-surface) !important;
     border: 1px solid var(--tib-border-strong) !important;
-    border-radius: var(--tib-radius-sm) !important;
-    box-shadow: none !important;
+    border-radius: var(--tib-radius-sm);
   }
-  .chosen-container .chosen-drop {
-    background: var(--tib-surface);
-    border-color: var(--tib-border-strong);
-    border-radius: 0 0 var(--tib-radius-sm) var(--tib-radius-sm);
-    box-shadow: var(--tib-shadow);
+  .ace-file-input .ace-file-container:hover {
+    border-color: var(--tib-text-faint) !important;
   }
-  .chosen-container .chosen-results li {
-    color: var(--tib-text);
-  }
-  .chosen-container .chosen-results li.highlighted {
+  .ace-file-input .ace-file-container::before {
     color: var(--tib-on-accent);
-    background: var(--tib-accent-solid) !important;
+    background-color: var(--tib-accent-solid);
+    border-color: var(--tib-accent-solid);
+    border-radius: 0 calc(var(--tib-radius-sm) - 1px) calc(var(--tib-radius-sm) - 1px) 0;
+  }
+  .ace-file-input .ace-file-container .ace-icon {
+    color: var(--tib-text-muted);
+    background-color: var(--tib-surface-3);
+    border-color: var(--tib-border-strong);
+  }
+  .ace-file-input .ace-file-container .ace-file-name::after {
+    color: var(--tib-text-muted);
+  }
+  .ace-file-input .remove {
+    color: var(--tib-danger);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border-strong);
   }
 
   /* ---- Buttons -------------------------------------------------------- */
@@ -292,6 +360,31 @@
     background-color: var(--tib-surface) !important;
     border-color: var(--tib-border-strong) !important;
   }
+  .btn-app {
+    background-image: none !important; /* Ace's glossy gradients */
+  }
+  .btn-app.btn-light {
+    color: var(--tib-text) !important;
+    background: var(--tib-surface-3) !important;
+    border-color: var(--tib-border-strong) !important;
+  }
+
+  /* Ace's "white" buttons are outlined: surface fill with coloured text. */
+  .btn-white:is(.btn-primary, .btn-info, .btn-success, .btn-danger, .btn-warning, .btn-yellow, .btn-default) {
+    --tib-btn-ink: var(--tib-text-muted);
+    color: var(--tib-btn-ink) !important;
+    background-color: var(--tib-surface) !important;
+    border-color: color-mix(in srgb, var(--tib-btn-ink) 45%, var(--tib-border)) !important;
+  }
+  .btn-white:is(.btn-primary, .btn-info) { --tib-btn-ink: var(--tib-accent); }
+  .btn-white.btn-success { --tib-btn-ink: var(--tib-success); }
+  .btn-white.btn-danger { --tib-btn-ink: var(--tib-danger); }
+  .btn-white:is(.btn-warning, .btn-yellow) { --tib-btn-ink: var(--tib-warning); }
+  .btn-white:is(.btn-primary, .btn-info, .btn-success, .btn-danger, .btn-warning, .btn-yellow, .btn-default):is(:hover, :focus-visible, .active, :active, .open > *) {
+    filter: none;
+    background-color: color-mix(in srgb, var(--tib-btn-ink) 12%, var(--tib-surface)) !important;
+  }
+
   .btn-link {
     color: var(--tib-accent) !important;
     background: transparent !important;
@@ -344,10 +437,19 @@
     line-height: 1.5;
     height: auto;
   }
-  .label {
+  .label,
+  .badge,
+  :is(.label, .badge):is(.label-default, .label-grey, .badge-grey, .label-light, .label-white, .badge-light) {
     color: var(--tib-text) !important;
     background-color: var(--tib-surface-3) !important;
   }
+  .label-white {
+    border: 1px solid var(--tib-border-strong);
+  }
+  :is(.label-yellow, .badge-yellow) { color: var(--tib-on-warning) !important; background-color: var(--tib-warning-solid) !important; }
+  :is(.label-pink, .badge-pink) { color: #fff !important; background-color: #b8326a !important; }
+  :is(.label-purple, .badge-purple) { color: #fff !important; background-color: #7a5bb8 !important; }
+  :is(.label-inverse, .badge-inverse) { color: #fff !important; background-color: #4b5565 !important; }
   .label-primary, .label-info, .badge-info, .badge-primary {
     color: var(--tib-on-accent) !important;
     background-color: var(--tib-accent-solid) !important;
@@ -388,6 +490,43 @@
   .dropdown-menu .divider {
     background-color: var(--tib-border);
   }
+  .dropdown-header {
+    color: var(--tib-text-muted);
+  }
+  .dropdown-menu > .disabled > a,
+  .dropdown-menu > .disabled > a:hover {
+    color: var(--tib-text-faint) !important;
+    background-color: transparent !important;
+  }
+
+  /* Ace's notification / message panels (also restyled in the top bar, layout.css). */
+  .dropdown-navbar > li,
+  .dropdown-navbar > li.dropdown-content,
+  .dropdown-navbar .dropdown-content .dropdown-navbar > li {
+    background-color: transparent !important;
+  }
+  .dropdown-navbar > li.dropdown-header {
+    color: var(--tib-text);
+    background-color: transparent !important;
+    border-color: var(--tib-border) !important;
+  }
+  .dropdown-navbar > li > a,
+  .dropdown-navbar .dropdown-content .dropdown-navbar > li > a {
+    color: var(--tib-text) !important;
+    border-color: var(--tib-border) !important;
+  }
+  .dropdown-navbar > li > :is(.ace-icon, a > .ace-icon) {
+    color: var(--tib-text-muted);
+  }
+  .dropdown-navbar > li > a:hover {
+    background-color: var(--tib-accent-softer) !important;
+  }
+  .dropdown-navbar > li.dropdown-footer > a {
+    color: var(--tib-accent) !important;
+  }
+  .dropdown-navbar .msg-time {
+    color: var(--tib-text-muted);
+  }
 
   .popover,
   .modal-content {
@@ -397,10 +536,37 @@
     border-radius: var(--tib-radius-lg);
     box-shadow: var(--tib-shadow-lg);
   }
+  .popover-title {
+    color: var(--tib-text);
+    font-weight: 650;
+    text-shadow: none;
+    background-color: var(--tib-surface-2);
+    border-color: var(--tib-border);
+    border-radius: calc(var(--tib-radius-lg) - 1px) calc(var(--tib-radius-lg) - 1px) 0 0;
+  }
+  .popover.top > .arrow::after { border-top-color: var(--tib-surface); }
+  .popover.right > .arrow::after { border-right-color: var(--tib-surface); }
+  .popover.bottom > .arrow::after { border-bottom-color: var(--tib-surface-2); }
+  .popover.left > .arrow::after { border-left-color: var(--tib-surface); }
+  .popover.top > .arrow { border-top-color: var(--tib-border); }
+  .popover.right > .arrow { border-right-color: var(--tib-border); }
+  .popover.bottom > .arrow { border-bottom-color: var(--tib-border); }
+  .popover.left > .arrow { border-left-color: var(--tib-border); }
+
   .modal-header,
   .modal-footer {
     background: transparent;
     border-color: var(--tib-border);
+  }
+  .close {
+    color: var(--tib-text);
+    text-shadow: none;
+    opacity: 0.6;
+  }
+  .close:hover,
+  .close:focus {
+    color: var(--tib-text);
+    opacity: 1;
   }
   .modal-backdrop.in {
     opacity: 0.55;
@@ -416,6 +582,85 @@
     border: 1px solid var(--tib-border);
     border-radius: var(--tib-radius);
     box-shadow: none;
+  }
+  .jumbotron {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-2);
+    border-radius: var(--tib-radius-lg);
+  }
+  .thumbnail {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border);
+    border-radius: var(--tib-radius);
+  }
+  .thumbnail .caption {
+    color: var(--tib-text);
+  }
+
+  /* ---- Lists and pills -------------------------------------------------- */
+
+  .list-group-item {
+    color: var(--tib-text);
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border);
+  }
+  a.list-group-item:hover,
+  a.list-group-item:focus {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-3);
+    text-decoration: none;
+  }
+  .list-group-item.active,
+  .list-group-item.active:hover,
+  .list-group-item.active:focus {
+    color: var(--tib-on-accent);
+    background-color: var(--tib-accent-solid);
+    border-color: var(--tib-accent-solid);
+  }
+  .list-group-item.disabled {
+    color: var(--tib-text-faint);
+    background-color: var(--tib-surface-2);
+  }
+  .list-group-item-success { color: var(--tib-success); background-color: var(--tib-success-soft); }
+  .list-group-item-info { color: var(--tib-info); background-color: var(--tib-info-soft); }
+  .list-group-item-warning { color: var(--tib-warning); background-color: var(--tib-warning-soft); }
+  .list-group-item-danger { color: var(--tib-danger); background-color: var(--tib-danger-soft); }
+  .list-group-item:first-child { border-radius: var(--tib-radius) var(--tib-radius) 0 0; }
+  .list-group-item:last-child { border-radius: 0 0 var(--tib-radius) var(--tib-radius); }
+
+  .nav-pills > li > a {
+    color: var(--tib-text-muted);
+    font-weight: 600;
+    border-radius: var(--tib-radius-sm);
+  }
+  .nav-pills > li > a:hover,
+  .nav-pills > li > a:focus {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-3);
+  }
+  .nav-pills > li.active > a,
+  .nav-pills > li.active > a:hover,
+  .nav-pills > li.active > a:focus {
+    color: var(--tib-on-accent);
+    background-color: var(--tib-accent-solid);
+  }
+  .nav > li.disabled > a,
+  .nav > li.disabled > a:hover {
+    color: var(--tib-text-faint);
+    background-color: transparent;
+  }
+
+  /* Bootstrap's own breadcrumb, used inside pages (the page-top one is in layout.css). */
+  .breadcrumb {
+    background-color: transparent;
+  }
+  .breadcrumb > li,
+  .breadcrumb > .active {
+    color: var(--tib-text-muted);
+  }
+  .breadcrumb > li + li::before {
+    color: var(--tib-text-faint);
   }
 
   /* ---- Pagination ------------------------------------------------------ */
@@ -449,6 +694,26 @@
   .pagination > li:last-child > a,
   .pagination > li:last-child > span {
     border-radius: 0 var(--tib-radius-sm) var(--tib-radius-sm) 0;
+  }
+
+  .pager > li > a,
+  .pager > li > span {
+    color: var(--tib-accent);
+    font-weight: 600;
+    background-color: var(--tib-surface);
+    border-color: var(--tib-border-strong);
+  }
+  .pager > li > a:hover,
+  .pager > li > a:focus {
+    color: var(--tib-text);
+    background-color: var(--tib-surface-3);
+    border-color: var(--tib-text-faint);
+  }
+  .pager > li.disabled > a,
+  .pager > li.disabled > span {
+    color: var(--tib-text-faint);
+    background-color: var(--tib-surface-2);
+    border-color: var(--tib-border);
   }
 }
 

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!-- Every component the intranet's stylesheets define, laid out flat on one page with its
+     popups shown open, so dark-mode gaps can be spotted (and audited by script) in one go.
+     Loads the same stylesheets, in the same order, as the real logged-in pages. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MOCK - Components</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/bootstrap.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/font-awesome.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/jquery-ui.custom.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/chosen.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/datepicker.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/bootstrap-timepicker.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/daterangepicker.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/colorpicker.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/ace-fonts.css">
+  <link rel="stylesheet" href="https://web.tarc.edu.my/portal/assets/css/ace.css" class="ace-main-stylesheet">
+  <style>
+    /* Mock-only: popups are normally positioned by script; show them in the flow instead. */
+    .mock-static { position: static !important; display: block !important; float: none !important; margin: 0 0 12px !important; }
+    .mock-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+  </style>
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+<div class="main-content"><div class="main-content-inner"><div class="page-content">
+
+  <div class="page-header"><h1>Components <small><i class="ace-icon fa fa-angle-double-right"></i> dark-mode audit</small></h1></div>
+
+  <!-- ===== Bootstrap basics ===== -->
+  <h3 class="header smaller lighter blue" id="s-basics">Bootstrap basics</h3>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="well">A plain <code>.well</code> with <a href="#">a link</a>.</div>
+      <div class="well well-sm">Small well</div>
+      <div class="jumbotron"><h1>Jumbotron</h1><p>Hero block text.</p></div>
+      <blockquote><p>A blockquote with a citation.</p><small>Someone <cite>Somewhere</cite></small></blockquote>
+      <p>Inline <code>code</code>, <kbd>Ctrl</kbd>+<kbd>S</kbd>, <mark>marked</mark>, <abbr title="abbr">abbr</abbr>.</p>
+      <pre>pre-formatted
+block</pre>
+      <p class="text-primary">text-primary</p><p class="text-success">text-success</p><p class="text-info">text-info</p>
+      <p class="text-warning">text-warning</p><p class="text-danger">text-danger</p>
+      <p class="bg-primary">bg-primary</p><p class="bg-success">bg-success</p><p class="bg-info">bg-info</p>
+      <p class="bg-warning">bg-warning</p><p class="bg-danger">bg-danger</p>
+      <div class="thumbnail"><div class="caption"><h3>Thumbnail</h3><p>Caption text.</p></div></div>
+    </div>
+    <div class="col-sm-6">
+      <div class="list-group">
+        <a href="#" class="list-group-item active">Active item</a>
+        <a href="#" class="list-group-item">Item</a>
+        <a href="#" class="list-group-item list-group-item-success">Success item</a>
+        <a href="#" class="list-group-item list-group-item-info">Info item</a>
+        <a href="#" class="list-group-item list-group-item-warning">Warning item</a>
+        <a href="#" class="list-group-item list-group-item-danger">Danger item</a>
+        <span class="list-group-item disabled">Disabled item</span>
+      </div>
+      <ul class="nav nav-pills"><li class="active"><a href="#">Pill</a></li><li><a href="#">Pill</a></li><li class="disabled"><a href="#">Off</a></li></ul>
+      <br>
+      <ul class="nav nav-stacked nav-pills"><li class="active"><a href="#">Stacked</a></li><li><a href="#">Stacked</a></li></ul>
+      <ol class="breadcrumb"><li><a href="#">Home</a></li><li class="active">Bootstrap breadcrumb</li></ol>
+      <ul class="pager"><li class="previous"><a href="#">Older</a></li><li class="next disabled"><a href="#">Newer</a></li></ul>
+      <ul class="pagination pagination-sm"><li class="disabled"><span>&laquo;</span></li><li class="active"><span>1</span></li><li><a href="#">2</a></li></ul>
+      <div class="btn-group">
+        <button class="btn btn-default">Default</button><button class="btn btn-white btn-default btn-round">White</button>
+        <button class="btn btn-light">Light</button><button class="btn btn-inverse">Inverse</button><button class="btn btn-purple">Purple</button><button class="btn btn-pink">Pink</button>
+      </div>
+      <div class="space-6"></div>
+      <div class="btn-group">
+        <button class="btn btn-white btn-primary">White primary</button><button class="btn btn-white btn-success">White success</button>
+        <button class="btn btn-white btn-danger">White danger</button><button class="btn btn-white btn-warning">White warning</button>
+        <button class="btn btn-white btn-info active">White info active</button>
+      </div>
+      <div class="space-6"></div>
+      <button class="btn btn-app btn-primary btn-xs"><i class="ace-icon fa fa-pencil bigger-160"></i> Edit</button>
+      <button class="btn btn-app btn-light btn-xs"><i class="ace-icon fa fa-print bigger-160"></i> Print</button>
+      <a href="#" class="btn btn-link">Link button</a>
+      <div class="space-6"></div>
+      <span class="badge">default</span> <span class="badge badge-grey">grey</span> <span class="badge badge-yellow">yellow</span>
+      <span class="badge badge-pink">pink</span> <span class="badge badge-purple">purple</span> <span class="badge badge-inverse">inverse</span>
+      <span class="label label-default">default</span> <span class="label label-grey">grey</span> <span class="label label-light">light</span>
+      <span class="label label-yellow">yellow</span> <span class="label label-pink">pink</span> <span class="label label-purple">purple</span>
+      <span class="label label-inverse">inverse</span> <span class="label label-white middle">white</span>
+      <div class="space-6"></div>
+      <div class="alert alert-block alert-success"><strong>Well done!</strong> With <a href="#" class="alert-link">an alert link</a>.</div>
+      <div class="alert alert-warning">Warning alert</div>
+    </div>
+  </div>
+
+  <!-- ===== Forms ===== -->
+  <h3 class="header smaller lighter blue" id="s-forms">Forms</h3>
+  <div class="row">
+    <div class="col-sm-6">
+      <form class="form-horizontal">
+        <div class="form-group has-success"><label class="col-sm-3 control-label">Success</label><div class="col-sm-9"><span class="block input-icon input-icon-right"><input type="text" class="width-100" value="ok"><i class="ace-icon fa fa-check-circle"></i></span><div class="help-block">Looks good.</div></div></div>
+        <div class="form-group has-warning"><label class="col-sm-3 control-label">Warning</label><div class="col-sm-9"><input type="text" class="width-100" value="hmm"></div></div>
+        <div class="form-group has-error"><label class="col-sm-3 control-label">Error</label><div class="col-sm-9"><input type="text" class="width-100" value="bad"><div class="help-block">Required.</div></div></div>
+        <div class="form-group"><label class="col-sm-3 control-label">Addon</label><div class="col-sm-9"><div class="input-group"><span class="input-group-addon"><i class="fa fa-calendar"></i></span><input class="form-control" type="text" value="07-10-2026"><span class="input-group-btn"><button class="btn btn-sm btn-default" type="button">Go</button></span></div></div></div>
+        <div class="form-group"><label class="col-sm-3 control-label">Static</label><div class="col-sm-9"><p class="form-control-static">form-control-static</p></div></div>
+        <div class="form-group"><label class="col-sm-3 control-label">Textarea</label><div class="col-sm-9"><textarea class="form-control">Some text</textarea></div></div>
+        <div class="form-group"><label class="col-sm-3 control-label">Disabled</label><div class="col-sm-9"><input type="text" class="form-control" disabled value="disabled"></div></div>
+        <div class="form-group"><label class="col-sm-3 control-label">Multi</label><div class="col-sm-9"><select multiple class="form-control"><option selected>One</option><option>Two</option></select></div></div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <label><input type="checkbox" class="ace"><span class="lbl"> Unchecked</span></label>
+      <label><input type="checkbox" class="ace" disabled><span class="lbl"> Disabled</span></label>
+      <label><input type="radio" class="ace" name="r" checked><span class="lbl"> Radio</span></label>
+      <label><input type="checkbox" class="ace ace-switch ace-switch-5" checked><span class="lbl"></span></label>
+      <label><input type="checkbox" class="ace ace-switch ace-switch-6"><span class="lbl"></span></label>
+      <label><input type="checkbox" class="ace ace-switch"><span class="lbl"></span></label>
+      <div class="space-6"></div>
+      <label class="ace-file-input"><input type="file"><span class="ace-file-container" data-title="Choose"><span class="ace-file-name" data-title="No File ..."><i class="ace-icon fa fa-upload"></i></span></span><a class="remove" href="#"><i class="ace-icon fa fa-times"></i></a></label>
+      <div class="space-6"></div>
+      <div class="ace-spinner middle touch-spinner" style="width:125px"><div class="input-group"><div class="spinbox-buttons input-group-btn"><button type="button" class="btn spinbox-down btn-sm btn-danger"><i class="icon-only ace-icon fa fa-minus"></i></button></div><input type="text" class="spinbox-input form-control text-center" value="2"><div class="spinbox-buttons input-group-btn"><button type="button" class="btn spinbox-up btn-sm btn-success"><i class="icon-only ace-icon fa fa-plus"></i></button></div></div></div>
+      <div class="space-6"></div>
+      <div class="input-group"><input type="text" class="form-control search-query" placeholder="Search"><span class="input-group-btn"><button type="button" class="btn btn-purple btn-sm">Search</button></span></div>
+    </div>
+  </div>
+
+  <!-- ===== Chosen ===== -->
+  <h3 class="header smaller lighter blue" id="s-chosen">Chosen</h3>
+  <div class="mock-row">
+    <div class="chosen-container chosen-container-single chosen-with-drop chosen-container-active" style="width:260px">
+      <a class="chosen-single"><span>Kuala Lumpur</span><div><b></b></div></a>
+      <div class="chosen-drop" style="position:static">
+        <div class="chosen-search"><input type="text" autocomplete="off"></div>
+        <ul class="chosen-results">
+          <li class="group-result">Group</li>
+          <li class="active-result result-selected">Kuala Lumpur</li>
+          <li class="active-result highlighted">Penang</li>
+          <li class="active-result">Pe<em>ra</em>k</li>
+          <li class="disabled-result">Sabah</li>
+          <li class="no-results">No results match "x"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chosen-container chosen-container-multi" style="width:300px">
+      <ul class="chosen-choices">
+        <li class="search-choice"><span>Data Science</span><a class="search-choice-close"></a></li>
+        <li class="search-choice search-choice-disabled"><span>Locked</span></li>
+        <li class="search-field"><input type="text" value="Select" class="default" style="width:60px"></li>
+      </ul>
+    </div>
+    <div class="chosen-container chosen-container-single chosen-disabled" style="width:200px"><a class="chosen-single chosen-default"><span>Disabled</span><div><b></b></div></a></div>
+  </div>
+
+  <!-- ===== Pickers ===== -->
+  <h3 class="header smaller lighter blue" id="s-pickers">Date, time and colour pickers</h3>
+  <div class="mock-row">
+    <div class="datepicker datepicker-dropdown dropdown-menu mock-static datepicker-orient-left datepicker-orient-top">
+      <div class="datepicker-days" style="display:block">
+        <table class="table-condensed">
+          <thead>
+            <tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">October 2026</th><th class="next">»</th></tr>
+            <tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="old day">27</td><td class="old day">28</td><td class="old day">29</td><td class="old day">30</td><td class="day">1</td><td class="day">2</td><td class="day">3</td></tr>
+            <tr><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="today day">7</td><td class="active day">8</td><td class="day range">9</td><td class="day disabled">10</td></tr>
+            <tr><td class="day selected">11</td><td class="day focused">12</td><td class="new day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr>
+          </tbody>
+          <tfoot><tr><th colspan="7" class="today">Today</th></tr><tr><th colspan="7" class="clear">Clear</th></tr></tfoot>
+        </table>
+      </div>
+      <div class="datepicker-months" style="display:block">
+        <table class="table-condensed"><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month active">Feb</span><span class="month disabled">Mar</span><span class="month">Apr</span></td></tr></tbody></table>
+      </div>
+    </div>
+
+    <div class="daterangepicker dropdown-menu opensright show-calendar mock-static">
+      <div class="calendar left" style="display:block">
+        <div class="daterangepicker_input"><input class="input-mini form-control active" type="text" value="10/07/2026"><i class="fa fa-calendar glyphicon glyphicon-calendar"></i></div>
+        <div class="calendar-table">
+          <table class="table-condensed">
+            <thead><tr><th class="prev available"><i class="fa fa-chevron-left"></i></th><th colspan="5" class="month">Oct 2026</th><th class="next available"><i class="fa fa-chevron-right"></i></th></tr>
+            <tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead>
+            <tbody>
+              <tr><td class="off available">27</td><td class="available">5</td><td class="available active start-date">6</td><td class="available in-range">7</td><td class="available in-range">8</td><td class="available active end-date">9</td><td class="weekend available">10</td></tr>
+              <tr><td class="off disabled">11</td><td class="available">12</td><td class="available">13</td><td class="available">14</td><td class="available">15</td><td class="available">16</td><td class="weekend available">17</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="calendar-time"><select class="hourselect"><option>12</option></select> : <select class="minuteselect"><option>00</option></select></div>
+      </div>
+      <div class="ranges">
+        <ul><li class="active">Today</li><li>Yesterday</li><li>Last 7 Days</li><li>Custom Range</li></ul>
+        <div class="range_inputs"><button class="applyBtn btn btn-sm btn-success">Apply</button> <button class="cancelBtn btn btn-sm btn-default">Cancel</button></div>
+      </div>
+    </div>
+
+    <div class="bootstrap-timepicker">
+      <div class="bootstrap-timepicker-widget dropdown-menu open mock-static timepicker-orient-left timepicker-orient-bottom">
+        <table>
+          <tbody>
+            <tr><td><a href="#" data-action="incrementHour"><i class="fa fa-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="fa fa-chevron-up"></i></a></td></tr>
+            <tr><td><span class="bootstrap-timepicker-hour">09</span></td><td class="separator">:</td><td><span class="bootstrap-timepicker-minute">30</span></td></tr>
+            <tr><td><a href="#" data-action="decrementHour"><i class="fa fa-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="fa fa-chevron-down"></i></a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bootstrap-datetimepicker-widget dropdown-menu bottom mock-static" style="width:260px">
+      <ul class="list-unstyled">
+        <li class="collapse in"><div class="datepicker"><div class="datepicker-days" style="display:block">
+          <table class="table-condensed">
+            <thead><tr><th class="prev">‹</th><th class="picker-switch" colspan="5">October 2026</th><th class="next">›</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead>
+            <tbody><tr><td class="day old">28</td><td class="day">5</td><td class="day today">7</td><td class="day active">8</td><td class="day disabled">9</td><td class="day">10</td><td class="day new">1</td></tr></tbody>
+          </table>
+        </div></div></li>
+        <li class="picker-switch accordion-toggle"><table class="table-condensed"><tbody><tr><td><a class="btn" data-action="togglePicker"><i class="fa fa-clock-o"></i></a></td></tr></tbody></table></li>
+        <li class="collapse in"><div class="timepicker"><div class="timepicker-picker">
+          <table class="table-condensed"><tbody><tr><td><a class="btn" data-action="incrementHours"><i class="fa fa-chevron-up"></i></a></td><td class="separator"></td><td><a class="btn" data-action="incrementMinutes"><i class="fa fa-chevron-up"></i></a></td></tr>
+          <tr><td><span class="timepicker-hour">09</span></td><td class="separator">:</td><td><span class="timepicker-minute">30</span></td></tr></tbody></table>
+        </div></div></li>
+      </ul>
+    </div>
+
+    <div class="colorpicker dropdown-menu mock-static">
+      <div class="colorpicker-saturation" style="background-color:#ff0000"><i><b></b></i></div>
+      <div class="colorpicker-hue"><i></i></div>
+      <div class="colorpicker-alpha"><i></i></div>
+      <div class="colorpicker-color"><div style="background-color:#3366cc"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== jQuery UI ===== -->
+  <h3 class="header smaller lighter blue" id="s-jqui">jQuery UI</h3>
+  <div class="mock-row">
+    <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content mock-static" style="width:220px">
+      <li class="ui-autocomplete-category">Category</li>
+      <li class="ui-menu-item"><a class="ui-corner-all" tabindex="-1">Autocomplete item</a></li>
+      <li class="ui-menu-item"><a class="ui-corner-all ui-state-focus" tabindex="-1">Focused item</a></li>
+      <li class="ui-menu-item ui-state-disabled"><a>Disabled item</a></li>
+    </ul>
+    <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front mock-static" style="width:320px">
+      <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title"><div class="widget-header"><h4 class="smaller"><i class="ace-icon fa fa-check"></i> jQuery UI dialog</h4></div></span><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" title="Close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">Close</span></button></div>
+      <div class="ui-dialog-content ui-widget-content"><p>Dialog body text.</p></div>
+      <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button class="btn btn-minier btn-primary">OK</button></div></div>
+    </div>
+    <div style="width:260px">
+      <div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width:40%"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left:40%"></span></div>
+      <div class="space-12"></div>
+      <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all"><div class="ui-progressbar-value ui-widget-header ui-corner-left" style="width:60%"></div></div>
+      <div class="space-12"></div>
+      <div class="ui-tooltip ui-widget ui-corner-all ui-widget-content" style="position:static">jQuery UI tooltip</div>
+      <div class="space-12"></div>
+      <div id="accordion" class="accordion-style1 ui-accordion ui-widget ui-helper-reset">
+        <h3 class="ui-accordion-header ui-state-default ui-accordion-header-active ui-state-active ui-corner-top"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>Open section</h3>
+        <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" style="display:block">Accordion content</div>
+        <h3 class="ui-accordion-header ui-state-default ui-corner-all"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>Closed section</h3>
+      </div>
+    </div>
+    <div class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display:block;position:static">
+      <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all"><span class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><a class="ui-datepicker-next ui-corner-all"><span class="ui-icon ui-icon-circle-triangle-e">Next</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-month">October</span> <span class="ui-datepicker-year">2026</span></div></div>
+      <table class="ui-datepicker-calendar"><thead><tr><th><span>Su</span></th><th><span>Mo</span></th><th><span>Tu</span></th><th><span>We</span></th><th><span>Th</span></th></tr></thead>
+      <tbody><tr><td class="ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled"><span class="ui-state-default">30</span></td><td><a class="ui-state-default" href="#">5</a></td><td><a class="ui-state-default ui-priority-secondary" href="#">6</a></td><td class="ui-datepicker-today"><a class="ui-state-default ui-state-highlight" href="#">7</a></td><td class="ui-datepicker-current-day"><a class="ui-state-default ui-state-active" href="#">8</a></td></tr></tbody></table>
+    </div>
+    <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="width:280px">
+      <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"><li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a class="ui-tabs-anchor" href="#">Tab A</a></li><li class="ui-state-default ui-corner-top"><a class="ui-tabs-anchor" href="#">Tab B</a></li></ul>
+      <div class="ui-tabs-panel ui-widget-content ui-corner-bottom">jQuery UI tab panel</div>
+    </div>
+  </div>
+
+  <h3 class="header smaller lighter blue" id="s-jqgrid">jqGrid</h3>
+  <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" style="width:640px">
+    <div class="ui-jqgrid-view">
+      <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"><a class="ui-jqgrid-titlebar-close ui-corner-all" href="#"><span class="ui-icon ui-icon-circle-triangle-n"></span></a><span class="ui-jqgrid-title">jqGrid caption</span></div>
+      <div class="ui-jqgrid-toppager ui-state-default"></div>
+      <div class="ui-state-default ui-jqgrid-hdiv"><div class="ui-jqgrid-hbox"><table class="ui-jqgrid-htable" style="width:640px"><thead>
+        <tr class="ui-jqgrid-labels"><th class="ui-th-column ui-th-ltr ui-state-default" style="width:320px"><div class="ui-jqgrid-sortable">Course</div></th><th class="ui-th-column ui-th-ltr ui-state-default" aria-selected="true" style="width:320px"><div class="ui-jqgrid-sortable">Grade <span class="s-ico"><span class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span></span></div></th></tr>
+        <tr class="ui-search-toolbar"><th class="ui-th-column ui-th-ltr"><div><input type="text" style="width:95%"></div></th><th class="ui-th-column ui-th-ltr"><div><input type="text" style="width:95%"></div></th></tr>
+      </thead></table></div></div>
+      <div class="ui-jqgrid-bdiv"><div><table class="ui-jqgrid-btable" style="width:640px"><tbody>
+        <tr class="ui-widget-content jqgrow ui-row-ltr"><td>BMMS2094 Statistics</td><td>A</td></tr>
+        <tr class="ui-widget-content jqgrow ui-row-ltr ui-priority-secondary"><td>BMDS2003 Data Science (alt row)</td><td>A-</td></tr>
+        <tr class="ui-widget-content jqgrow ui-row-ltr ui-state-hover"><td>BMCS2074 Software Eng (hover)</td><td>B+</td></tr>
+        <tr class="ui-widget-content jqgrow ui-row-ltr ui-state-highlight"><td>AAMS3244 OOIPL (selected)</td><td>B</td></tr>
+        <tr class="ui-subgrid"><td colspan="2">Subgrid row</td></tr>
+      </tbody></table></div></div>
+    </div>
+    <div class="ui-state-default ui-jqgrid-pager ui-corner-bottom"><div class="ui-pager-control"><table class="ui-pg-table" style="width:100%"><tbody><tr>
+      <td><table class="ui-pg-table navtable"><tbody><tr><td class="ui-pg-button ui-corner-all"><div class="ui-pg-div"><span class="ui-icon ace-icon fa fa-pencil blue"></span></div></td><td class="ui-pg-button ui-corner-all"><div class="ui-pg-div"><span class="ui-icon ace-icon fa fa-trash-o red"></span></div></td></tr></tbody></table></td>
+      <td><table class="ui-pg-table"><tbody><tr><td class="ui-pg-button ui-corner-all ui-state-disabled"><span class="ui-icon ace-icon fa fa-angle-double-left bigger-140"></span></td><td class="ui-pg-button ui-corner-all"><span class="ui-icon ace-icon fa fa-angle-right bigger-140"></span></td><td>Page <input class="ui-pg-input" type="text" size="2" value="1"> of 3</td><td><select class="ui-pg-selbox"><option>10</option></select></td></tr></tbody></table></td>
+      <td><div class="ui-paging-info">View 1 - 10 of 23</div></td>
+    </tr></tbody></table></div></div>
+  </div>
+  <div class="space-12"></div>
+  <div class="ui-state-error ui-corner-all" style="padding:8px">ui-state-error message</div>
+
+  <!-- ===== Popups ===== -->
+  <h3 class="header smaller lighter blue" id="s-popups">Menus, popovers, modals</h3>
+  <div class="mock-row">
+    <ul class="dropdown-menu dropdown-light dropdown-caret mock-static">
+      <li class="dropdown-header">Dropdown header</li>
+      <li><a href="#">Action</a></li>
+      <li class="active"><a href="#">Active</a></li>
+      <li class="disabled"><a href="#">Disabled</a></li>
+      <li class="divider"></li>
+      <li class="dropdown-hover"><a href="#">Hover submenu <i class="ace-icon fa fa-caret-right pull-right"></i></a></li>
+    </ul>
+    <ul class="dropdown-menu dropdown-yellow dropdown-caret mock-static"><li><a href="#">Yellow dropdown</a></li><li><a href="#">Item</a></li></ul>
+    <ul class="dropdown-menu dropdown-info dropdown-caret mock-static"><li><a href="#">Info dropdown</a></li></ul>
+    <div class="popover right mock-static" style="max-width:260px"><div class="arrow"></div><h3 class="popover-title">Popover title</h3><div class="popover-content">Popover content.</div></div>
+    <div class="tooltip right in mock-static" style="opacity:1"><div class="tooltip-arrow"></div><div class="tooltip-inner">Tooltip</div></div>
+    <div class="modal-dialog" style="margin:0;width:340px">
+      <div class="modal-content">
+        <div class="modal-header"><button type="button" class="close">&times;</button><h4 class="modal-title">Modal title</h4></div>
+        <div class="modal-body"><p>Modal body.</p></div>
+        <div class="modal-footer no-margin-top"><button class="btn btn-sm btn-danger pull-left">Close</button><button class="btn btn-sm btn-primary">Save</button></div>
+      </div>
+    </div>
+    <div class="dropdown-navbar dropdown-menu mock-static" style="width:280px">
+      <li class="dropdown-header"><i class="ace-icon fa fa-exclamation-triangle"></i> 3 Notifications</li>
+      <li class="dropdown-content"><ul class="dropdown-menu dropdown-navbar navbar-pink">
+        <li><a href="#"><div class="clearfix"><span class="pull-left"><i class="btn btn-xs no-hover btn-pink fa fa-comment"></i> New comments</span><span class="pull-right badge badge-info">+12</span></div></a></li>
+        <li><a href="#"><div class="clearfix"><span class="msg-body"><span class="msg-title"><span class="blue">Alex:</span> Ciao sociis natoque penatibus...</span><span class="msg-time"><i class="ace-icon fa fa-clock-o"></i> a moment ago</span></span></div></a></li>
+      </ul></li>
+      <li class="dropdown-footer"><a href="#">See all notifications <i class="ace-icon fa fa-arrow-right"></i></a></li>
+    </div>
+  </div>
+
+  <!-- ===== Ace extras ===== -->
+  <h3 class="header smaller lighter blue" id="s-ace">Ace widgets</h3>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="widget-box widget-color-dark"><div class="widget-header widget-header-flat"><h4 class="widget-title">Flat header (dark colour)</h4></div><div class="widget-body"><div class="widget-main">Body</div><div class="widget-toolbox padding-8 clearfix"><button class="btn btn-xs btn-success">Toolbox</button></div></div></div>
+      <div class="widget-box light-border"><div class="widget-header widget-header-small header-color-green"><h5 class="widget-title">Light border</h5></div><div class="widget-body"><div class="widget-main padding-6">Body</div></div></div>
+      <div class="widget-box transparent"><div class="widget-header widget-header-flat"><h4 class="widget-title lighter">Transparent widget</h4></div><div class="widget-body"><div class="widget-main padding-4">Body</div></div></div>
+
+      <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs"><li class="active"><a href="#">Left tab</a></li><li><a href="#">Another</a></li></ul>
+        <div class="tab-content"><div class="tab-pane active">Left tab content</div></div>
+      </div>
+      <div class="space-12"></div>
+      <div class="tabbable tabs-below">
+        <div class="tab-content"><div class="tab-pane active">Below tab content</div></div>
+        <ul class="nav nav-tabs"><li class="active"><a href="#">Below tab</a></li><li><a href="#">Another</a></li></ul>
+      </div>
+      <div class="space-12"></div>
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue"><li class="active"><a href="#">Coloured tab bar</a></li><li><a href="#">Other</a></li></ul>
+      <div class="space-12"></div>
+      <div class="panel-group accordion-style1 accordion-style2" id="acc">
+        <div class="panel panel-default"><div class="panel-heading"><a class="accordion-toggle" href="#">Accordion open</a></div><div class="panel-collapse collapse in"><div class="panel-body">Accordion body</div></div></div>
+        <div class="panel panel-default"><div class="panel-heading"><a class="accordion-toggle collapsed" href="#">Accordion closed</a></div></div>
+      </div>
+      <div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">Panel primary</h3></div><div class="panel-body">Body</div><div class="panel-footer">Footer</div></div>
+      <div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">Panel success</h3></div><div class="panel-body">Body</div></div>
+      <div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">Panel info</h3></div><div class="panel-body">Body</div></div>
+      <div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title">Panel warning</h3></div><div class="panel-body">Body</div></div>
+      <div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title">Panel danger</h3></div><div class="panel-body">Body</div></div>
+    </div>
+    <div class="col-sm-6">
+      <div class="timeline-container">
+        <div class="timeline-label"><span class="label label-primary arrowed-in-right label-lg"><b>Today</b></span></div>
+        <div class="timeline-items">
+          <div class="timeline-item clearfix">
+            <div class="timeline-info"><i class="timeline-indicator ace-icon fa fa-star btn btn-warning no-hover green"></i></div>
+            <div class="widget-box transparent"><div class="widget-header widget-header-small"><h5 class="widget-title smaller">Timeline item</h5><span class="widget-toolbar no-border"><i class="ace-icon fa fa-clock-o bigger-110"></i> 16:22</span></div><div class="widget-body"><div class="widget-main">Timeline body text.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dialogs">
+        <div class="itemdiv dialogdiv"><div class="user"><img alt="" src="https://web.tarc.edu.my/portal/images/tarucLogo.png"></div><div class="body"><div class="time"><i class="ace-icon fa fa-clock-o"></i> <span class="green">4 sec</span></div><div class="name"><a href="#">Alexa</a></div><div class="text">Chat bubble text.</div></div></div>
+      </div>
+      <div class="profile-feed"><div class="profile-activity clearfix"><div><a class="user" href="#">Alex Doe</a> changed his profile photo. <div class="time"><i class="ace-icon fa fa-clock-o bigger-110"></i> an hour ago</div></div><div class="tools action-buttons"><a href="#" class="blue"><i class="ace-icon fa fa-pencil bigger-125"></i></a></div></div></div>
+      <div class="profile-user-info"><div class="profile-info-row"><div class="profile-info-name">Unstriped</div><div class="profile-info-value"><span>Value</span></div></div></div>
+      <div class="space-12"></div>
+      <div class="infobox-container">
+        <div class="infobox infobox-green"><div class="infobox-icon"><i class="ace-icon fa fa-comments"></i></div><div class="infobox-data"><span class="infobox-data-number">32</span><div class="infobox-content">comments</div></div><div class="stat stat-success">8%</div></div>
+        <div class="infobox infobox-blue2"><div class="infobox-progress"><div class="easy-pie-chart percentage">42%</div></div><div class="infobox-data"><span class="infobox-text">credits</span><div class="infobox-content">used</div></div></div>
+        <div class="infobox infobox-red infobox-dark"><div class="infobox-icon"><i class="ace-icon fa fa-flask"></i></div><div class="infobox-data"><div class="infobox-content">Dark infobox</div><div class="infobox-content">7</div></div></div>
+        <div class="infobox infobox-small infobox-dark infobox-blue"><div class="infobox-data"><div class="infobox-content">Small</div></div></div>
+      </div>
+      <div class="space-12"></div>
+      <div class="pricing-box"><div class="widget-box widget-color-orange"><div class="widget-header"><h5 class="widget-title bigger lighter">Pricing box</h5></div><div class="widget-body"><div class="widget-main"><ul class="list-unstyled spaced2"><li><i class="ace-icon fa fa-check green"></i> Feature</li></ul><hr><div class="price">RM 10</div></div><div><a href="#" class="btn btn-block btn-warning"><span>Buy</span></a></div></div></div></div>
+      <div class="space-12"></div>
+      <div class="progress progress-striped" data-percent="45%"><div class="progress-bar progress-bar-success" style="width:45%"></div></div>
+      <div class="progress progress-mini"><div class="progress-bar progress-bar-danger" style="width:65%"></div></div>
+      <ul class="item-list"><li class="item-orange clearfix"><label class="inline"><input type="checkbox" class="ace"><span class="lbl"> Task item</span></label></li><li class="item-red clearfix selected">Selected task</li></ul>
+      <div class="search-area well well-sm">Search area</div>
+      <div class="message-container"><div class="message-navbar clearfix"><div class="message-bar">Message navbar</div></div><div class="message-list"><div class="message-item message-unread"><span class="sender">Sender</span><span class="summary"><span class="text">Unread message</span></span></div><div class="message-item">Read message</div></div></div>
+      <div class="space-12"></div>
+      <table class="table table-condensed"><thead class="thin-border-bottom"><tr><th>Plain</th><th>table</th></tr></thead><tbody><tr class="success"><td>success</td><td>row</td></tr><tr class="warning"><td>warning</td><td>row</td></tr><tr class="danger"><td>danger</td><td>row</td></tr><tr class="info"><td>info</td><td>row</td></tr><tr class="active"><td>active</td><td>row</td></tr><tr><td class="success">td.success</td><td class="danger">td.danger</td></tr></tbody></table>
+      <ul class="ace-thumbnails clearfix"><li><a href="#"><img alt="" width="80" height="80" src="https://web.tarc.edu.my/portal/images/tarucLogo.png"></a><div class="tags"><span class="label-holder"><span class="label label-info arrowed">tag</span></span></div></li></ul>
+      <div class="wysiwyg-toolbar btn-toolbar center"><div class="btn-group"><a class="btn btn-sm btn-default">B</a><a class="btn btn-sm btn-default">I</a></div></div>
+      <div class="wysiwyg-editor" contenteditable="true">WYSIWYG editor area</div>
+    </div>
+  </div>
+
+</div></div></div>
+</div>
+</body>
+</html>
