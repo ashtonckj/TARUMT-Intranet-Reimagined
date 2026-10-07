@@ -609,6 +609,24 @@
     color: var(--tib-danger) !important;
   }
 
+  /* Anything else src/theme.js measured as light (or as dark text) in the page's own content. */
+  [data-tib-bg="plain"] {
+    background-color: var(--tib-surface-2) !important;
+  }
+  [data-tib-bg="tint"] {
+    background-color: color-mix(in srgb, var(--tib-page-bg) 24%, var(--tib-surface)) !important;
+  }
+  [data-tib-ink] {
+    color: var(--tib-text) !important;
+  }
+  /* Tables drawn with border="1" or an inline black border-color. */
+  table[border]:not([border="0"]),
+  table[border]:not([border="0"]) :is(td, th),
+  table[style*="border-color" i],
+  table[style*="border-color" i] :is(td, th) {
+    border-color: var(--tib-border-strong) !important;
+  }
+
   /* Images with dark-on-transparent artwork (logos, signatures) get a light plate. */
   .page-content img[src*="logo" i] {
     padding: 6px;

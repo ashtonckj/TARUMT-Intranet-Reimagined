@@ -230,6 +230,22 @@
       border-radius: 4px !important;
     }
 
+    /* Collapsed sidebar: Ace swaps the big buttons for four small dots and only shows the
+       big ones as a pop-out on hover. Without this the display:flex above keeps them showing. */
+    &:is(.menu-min, .responsive-min):not(.navbar-collapse) {
+      .sidebar-shortcuts-large {
+        display: none;
+        padding: 6px;
+        background-color: var(--tib-surface) !important;
+        border: 1px solid var(--tib-border) !important;
+        border-radius: 0 var(--tib-radius) var(--tib-radius) 0;
+        box-shadow: var(--tib-shadow) !important;
+      }
+      .sidebar-shortcuts:is(:hover, .hover-show) .sidebar-shortcuts-large {
+        display: flex;
+      }
+    }
+
     .nav-list {
       padding: 6px 0;
 
